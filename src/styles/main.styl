@@ -1,0 +1,34 @@
+@require "reset"
+@require "variables"
+
+/* general */
+body 
+    background: col_bg
+    color: #aaa
+    font-family: sans-serif
+
+a
+    color: inherit
+    text-decoration: none
+
+/* main area */
+main
+    display: flex
+    justify-content: center
+    width: 100vw
+    height: 100vh
+        
+#settingsBtn
+    position: fixed
+    top: 0
+    left: @top
+    font-size: 40pt
+    color: lighten(col_bg, 2%)
+    transition: color 0.7s ease-in
+    &:hover
+        color: white
+        &:after
+            content: "settings"
+
+/* content area */
+@require "PageList"

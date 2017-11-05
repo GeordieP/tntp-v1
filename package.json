@@ -1,0 +1,33 @@
+{
+    "name": "tntp",
+    "version": "1.0.0",
+    "author": "Geordie Powers",
+    "license": "MIT",
+    "description": "Simple new tab page WebExtension.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/geordiep/tntp.git"
+    },
+    "main": "index.js",
+    "scripts": {
+        "start": "gulp"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "babel-core": "^6.22.1",
+        "babel-loader": "^7.1.2",
+        "babel-minify-webpack-plugin": "^0.2.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.6.1",
+        "css-loader": "^0.28.7",
+        "gulp": "^3.9.1",
+        "hyperapp": "^0.15.1",
+        "rimraf": "^2.6.2",
+        "style-loader": "^0.19.0",
+        "stylus": "^0.54.5",
+        "stylus-loader": "^3.0.1",
+        "webpack": "^3.4.0",
+        "webpack-dev-server": "^2.4.2",
+        "webpack-stream": "^4.0.0"
+    }
+}
