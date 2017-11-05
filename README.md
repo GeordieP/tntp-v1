@@ -17,6 +17,8 @@ Built with:
 - Clone repository
 - Run `yarn` in project root
 - Run `gulp` in project root to start a webpack dev server with hot reloading
+- Browse to `localhost:8080` to view output (Note: App will not have access to the WebExtensions API in this mode)
+
 
 ## Build
 
