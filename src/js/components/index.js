@@ -1,10 +1,18 @@
 import { h } from 'hyperapp'
 
 import PageList from 'components/PageList'
+import EditList from 'components/EditList'
 
 export default (state, actions) =>
-<main>
-    <a href="#" id="settingsBtn" title="Settings">-</a>
-    <PageList pages={state.pages} />
-</main>
+state.editMode ? (
+    <main>
+        <a href="#" id="backBtn" title="Back" onclick={actions.toggleEdit}>Back</a>
+        <EditList pages={state.pages} />
+    </main>
+) : (
+    <main>
+        <a href="#" id="settingsBtn" title="Settings" onclick={actions.toggleEdit}>-</a>
+        <PageList pages={state.pages} />
+    </main>
+)
 

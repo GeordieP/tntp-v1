@@ -2,21 +2,34 @@
 @require "variables"
 
 /* general */
+html, body
+    height: 100%
+
 body 
     background: col_bg
     color: #aaa
     font-family: sans-serif
 
+h1
+    font-size: 2em
+
 a
     color: inherit
     text-decoration: none
+
+.flex
+    display: flex
+
+.colFlex
+    display: flex
+    flex-direction: column
 
 /* main area */
 main
     display: flex
     justify-content: center
-    width: 100vw
-    height: 100vh
+    width: 100%
+    height: 100%
         
 #settingsBtn
     position: fixed
@@ -30,5 +43,16 @@ main
         &:after
             content: "settings"
 
+#backBtn
+    @extend #settingsBtn
+    color: lighten(col_bg, 60%)
+    &:hover
+        &:after
+            content: ""
+    
+
 /* content area */
 @require "PageList"
+
+@require "EditList"
+@require "EditForm"

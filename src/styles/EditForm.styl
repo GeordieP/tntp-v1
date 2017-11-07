@@ -1,0 +1,17 @@
+@require "variables"
+
+.editForm
+    display: flex
+    flex-direction: column
+    justify-content: center
+    width: 50%
+    input, button
+        color: #aaa
+        border: 0
+        background: lighten(col_bg, 15%)
+        border-radius: borderradius
+        padding: 6px
+        margin: 2px
+        &:focus
+            border: 1px solid #4af
+            box-shadow: 0 0 3px #4af
