@@ -7,7 +7,7 @@ export default (state, actions) =>
 state.editMode ? (
     <main>
         <a href="#" id="backBtn" title="Back" onclick={actions.toggleEdit}>Back</a>
-        <EditList pages={state.pages} />
+        <EditList pages={state.pages} actions={actions} />
     </main>
 ) : (
     <main>

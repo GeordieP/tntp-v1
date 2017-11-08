@@ -1,10 +1,10 @@
 import { h } from 'hyperapp'
 
-export default ( {pages} ) =>
+export default ({ pages }) =>
 <ul id="pageList">
-    {pages.map(page =>
-        <a className="tile" href={ page.url }>
-            <li style={{ background: page.color }} title={ page.name }></li>
+    {Object.keys(pages).map(key =>
+        <a className="tile" href={ pages[key].url }>
+            <li style={{ background: pages[key].color }} title={ pages[key].name }></li>
         </a>
     )}
 </ul>

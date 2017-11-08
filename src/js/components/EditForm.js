@@ -1,21 +1,35 @@
 import { h } from 'hyperapp'
 
-export default ({ key, page }) => {
-    let newItem = false
+export default ({ key, page, savePage, newItem }) => {
+    if (newItem) {
+        key = "NEW"
+    }
 
-    if (!page) {
-        page = {}
-        newItem = true
+    let inputName = key + "_name"
+    let inputUrl = key + "_url"
+    let inputColor = key + "_color"
+
+    let onSubmit = function({ originalTarget }) {
+        savePage({
+            key,
+            // undefined is falsy, but give the action a boolean for more predictable behavior
+            newItem: newItem || false, 
+            page: {
+                // default name "NO NAME"
+                name: originalTarget[inputName].value || "NO NAME",
+                url: originalTarget[inputUrl].value,
+                // default color 1f1f1f
+                color: originalTarget[inputColor].value || "#1f1f1f"
+            }
+        })
     }
 
     return (
-        <div className="editForm">
-            <input type="text" placeholder="Name..." value={ page.name || ""} />
-            <input type="text" placeholder="URL..." value={ page.url || "" } />
-            <input type="text" placeholder="Color..." value={ page.color || ""} />
-            <button onclick="">
-              { newItem ? "Add" : "Save" }
-            </button>
-        </div>
+        <form className="editForm" onsubmit={onSubmit} action={ "#" + inputName }>
+            <input id={ inputName } type="text" placeholder="Name..." value={ page.name || ""} />
+            <input id={ inputUrl } type="text" placeholder="URL..." value={ page.url || "" } />
+            <input id={ inputColor } type="text" placeholder="Color..." value={ page.color || ""} />
+            <input type="submit" value={ newItem ? "Add" : "Save" } />
+        </form>
     )
 }
