@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 
-export default ({ key, page, savePage, newItem }) => {
+export default ({ key, page, newItem, savePage, deletePage }) => {
     if (newItem) {
         key = "NEW"
     }
@@ -29,7 +29,12 @@ export default ({ key, page, savePage, newItem }) => {
             <input id={ inputName } type="text" placeholder="Name..." value={ page.name || ""} />
             <input id={ inputUrl } type="text" placeholder="URL..." value={ page.url || "" } />
             <input id={ inputColor } type="text" placeholder="Color..." value={ page.color || ""} />
-            <input type="submit" value={ newItem ? "Add" : "Save" } />
+            <div className="flex">
+                <input className="submitBtn" type="submit" value={ newItem ? "Add" : "Save" } />
+                { newItem ? null :
+                    <input className="deleteBtn" type="button" value="Delete" onclick={deletePage.bind(null, key)} />
+                }
+            </div>
         </form>
     )
 }
