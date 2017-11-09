@@ -9,17 +9,18 @@ export default ({ key, page, newItem, savePage, deletePage }) => {
     let inputUrl = key + "_url"
     let inputColor = key + "_color"
 
-    let onSubmit = function({ target }) {
+    let onSubmit = function(e) {
+        e.preventDefault()
         savePage({
             key,
             // undefined is falsy, but give the action a boolean for more predictable behavior
             newItem: newItem || false, 
             page: {
                 // default name "NO NAME"
-                name: target[inputName].value,
-                url: target[inputUrl].value,
+                name: e.target[inputName].value,
+                url: e.target[inputUrl].value,
                 // default color 1f1f1f
-                color: target[inputColor].value || "#1f1f1f"
+                color: e.target[inputColor].value || "#1f1f1f"
             }
         })
     }
