@@ -15,6 +15,8 @@ const miscCfg = (() => {
 
     tmp.appRoot = path.resolve("src")
     tmp.buildIncludeDir = path.resolve("src/include")
+    tmp.buildIncludeDir_prod = path.resolve("src/include_prod")
+    tmp.buildIncludeDir_dev = path.resolve("src/include_dev")
     tmp.appEntry = path.resolve(tmp.appRoot, "js/index.js")
     tmp.buildDest = path.resolve("build/")
 
@@ -50,6 +52,10 @@ gulp.task("clean", (callback) => {
 
 gulp.task("copyInclude", ["clean"], () => {
     // copy everything from include directory into build/
+    //
+    // this is just the base src/include directory;
+    // there are also specific ones for dev and prod mode
+    // that get copied over by other tasks.
     gulp.src(miscCfg.buildIncludeDir + "/**/*")
         .pipe(gulp.dest(miscCfg.buildDest))
 })
@@ -57,6 +63,11 @@ gulp.task("copyInclude", ["clean"], () => {
 // run webpack build in production mode
 gulp.task("build", ["copyInclude"], () => {
     process.env.NODE_ENV = "production"
+
+    // copy everything from include_prod directory into build/
+    // these are modules that we don't want loaded 
+    gulp.src(miscCfg.buildIncludeDir_prod + "/**/*")
+        .pipe(gulp.dest(miscCfg.buildDest))
 
     // load our webpack configuration and start the webpack build process
     let wpCfg = require(miscCfg.wpBaseCfg)
@@ -66,6 +77,11 @@ gulp.task("build", ["copyInclude"], () => {
 })
 
 gulp.task("hot", (callback) => {
+    // copy everything from include_dev directory into build/
+    // these are modules that we don't want loaded 
+    gulp.src(miscCfg.buildIncludeDir_dev + "/**/*")
+        .pipe(gulp.dest(miscCfg.buildDest))
+
     let wpCfg = require(miscCfg.wpBaseCfg)
     let port = 8080
     let devServerOpts = {

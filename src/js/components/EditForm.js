@@ -11,6 +11,11 @@ export default ({ key, page, newItem, savePage, deletePage }) => {
 
     let onSubmit = function(e) {
         e.preventDefault()
+
+        // focus the "name" input so the user can easily
+        // tab through fields and add another page
+        e.target[inputName].focus()
+
         savePage({
             key,
             // undefined is falsy, but give the action a boolean for more predictable behavior
